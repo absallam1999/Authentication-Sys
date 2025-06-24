@@ -1,4 +1,5 @@
 // Source: ChatGPT
+import { passwordRegex } from "./validators";
 
 const passwordInput = document.getElementById("reg-pass") as HTMLInputElement;
 const passStrengthDiv = document.getElementById("pass-strength") as HTMLDivElement;
@@ -10,12 +11,13 @@ passwordInput.addEventListener("input", () => {
 
   if (val.length < 6) {
     strength = "Weak";
-    color = "red";
+    color = "red"; 
   } else if (/^(?=.*[A-Z])(?=.*\\d).{6,}$/.test(val)) {
     strength = "Medium";
     color = "orange";
-  } 
-  if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&]).{8,}$/.test(val)) {
+  }
+
+  if (passwordRegex.test(val)) {
     strength = "Strong";
     color = "green";
   }
