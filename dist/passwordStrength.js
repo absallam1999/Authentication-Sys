@@ -1,0 +1,23 @@
+"use strict";
+// Source: ChatGPT
+const passwordInput = document.getElementById("reg-pass");
+const passStrengthDiv = document.getElementById("pass-strength");
+passwordInput.addEventListener("input", () => {
+    const val = passwordInput.value;
+    let strength = "";
+    let color = "";
+    if (val.length < 6) {
+        strength = "Weak";
+        color = "red";
+    }
+    else if (/^(?=.*[A-Z])(?=.*\\d).{6,}$/.test(val)) {
+        strength = "Medium";
+        color = "orange";
+    }
+    if (/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&]).{8,}$/.test(val)) {
+        strength = "Strong";
+        color = "green";
+    }
+    passStrengthDiv.textContent = strength ? `Strength: ${strength}` : "";
+    passStrengthDiv.style.color = color;
+});
